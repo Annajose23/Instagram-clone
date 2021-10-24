@@ -2,8 +2,8 @@ import { useState } from "react";
 import faker from 'faker'
 import {useEffect} from 'react'
 
-function Suggestions() {
 
+function Suggestions() {
     const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
@@ -22,6 +22,7 @@ function Suggestions() {
             <h3 className="text-sm font-bold">Suggestions for you</h3>
             <button className="text-gray-600 font-semibold">See All</button>
         </div>
+      
         {
             suggestions.map(profile => (
                 <div key={profile.id} className="flex items-center justify-between mt-3">

@@ -8,8 +8,11 @@ import {
   MenuIcon,
 } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Header() {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className=" flex justify-between bg-white max-w-6xl mx-5 xl:mx-auto">
@@ -43,18 +46,29 @@ function Header() {
         </div>
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
-        <HomeIcon className="navBtn"/>
-        <MenuIcon className="h-6 md:hidden cursor-pointer"/>
-        <div className="relative navBtn rotate-45">
-        <PaperAirplaneIcon className="navBtn"/>
-        <div className="absolute -top-3 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white -right-1 text-xs w-5 h-5 -rotate-45">
-          3
-        </div>
-        </div>
-        <PlusCircleIcon className="navBtn"/>
-        <UserGroupIcon className="navBtn"/>
-        <HeartIcon className="navBtn"/>
-        <img className="h-10 rounded-full w-10 cursor-pointer" src="https://purewows3.imgix.net/images/articles/2021_08/melissa_roxburgh_actress.jpg?auto=format,compress&cs=strip" alt=""/>
+          <HomeIcon className="navBtn" />
+          <MenuIcon className="h-6 md:hidden cursor-pointer" />
+          {session ? (
+            <>
+              <div className="relative navBtn rotate-45">
+                <PaperAirplaneIcon className="navBtn" />
+                <div className="absolute -top-3 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white -right-1 text-xs w-5 h-5 -rotate-45">
+                  3
+                </div>
+              </div>
+              <PlusCircleIcon className="navBtn" />
+              <UserGroupIcon className="navBtn" />
+              <HeartIcon className="navBtn" />
+              <img
+              onClick={signOut}
+                className="h-10 rounded-full w-10 cursor-pointer"
+                src={session.user?.image}
+                alt=""
+              />
+            </>
+          ) : (
+            <><button onClick={signIn}>Sign In</button></>
+          )}
         </div>
       </div>
     </div>
