@@ -13,26 +13,30 @@ import { useRouter } from "next/dist/client/router";
 import { useRecoilState } from "recoil";
 import { modalstate } from "../atoms/modalAtom";
 
-
 function Header() {
   const { data: session } = useSession();
   const [open, setOpen] = useRecoilState(modalstate);
 
   const router = useRouter();
 
-
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className=" flex justify-between bg-white max-w-6xl mx-5 xl:mx-auto">
         {/* Left */}
-        <div onClick={() => router.push('/')} className="relative hidden lg:inline-grid w-24 cursor-pointer">
+        <div
+          onClick={() => router.push("/")}
+          className="relative hidden lg:inline-grid w-24 cursor-pointer"
+        >
           <Image
             src="https://links.papareact.com/ocw"
             layout="fill"
             objectFit="contain"
           />
         </div>
-        <div onClick={() => router.push('/')} className="relative w-10 h-10 lg:hidden flex-shrink-0 cursor-pointer">
+        <div
+          onClick={() => router.push("/")}
+          className="relative w-10 h-10 lg:hidden flex-shrink-0 cursor-pointer"
+        >
           <Image
             src="https://links.papareact.com/jjm"
             layout="fill"
@@ -53,7 +57,10 @@ function Header() {
           </div>
         </div>
         {/* Right */}
-        <div onClick={() => router.push('/')} className="flex items-center justify-end space-x-4">
+        <div
+          onClick={() => router.push("/")}
+          className="flex items-center justify-end space-x-4"
+        >
           <HomeIcon className="navBtn" />
           <MenuIcon className="h-6 md:hidden cursor-pointer" />
           {session ? (
@@ -64,18 +71,23 @@ function Header() {
                   3
                 </div>
               </div>
-              <PlusCircleIcon onClick={() => setOpen(true)} className="navBtn" />
+              <PlusCircleIcon
+                onClick={() => setOpen(true)}
+                className="navBtn"
+              />
               <UserGroupIcon className="navBtn" />
               <HeartIcon className="navBtn" />
               <img
-              onClick={signOut}
+                onClick={signOut}
                 className="h-10 rounded-full w-10 cursor-pointer"
                 src={session.user?.image}
                 alt=""
               />
             </>
           ) : (
-            <><button onClick={signIn}>Sign In</button></>
+            <>
+              <button onClick={signIn}>Sign In</button>
+            </>
           )}
         </div>
       </div>
