@@ -11,7 +11,7 @@ import { HomeIcon } from "@heroicons/react/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/dist/client/router";
 import { useRecoilState } from "recoil";
-import { modalstate } from "../atoms/modalatom";
+import { modalstate } from "../atoms/modalAtom";
 
 
 function Header() {
